@@ -78,7 +78,8 @@ export function extractInvestColumns(block) {
     const [, icon, label, value] = match;
     const column = INVEST_COLUMNS.find((entry) => entry.label === label);
     if (column) {
-      output[column.key] = `${icon} ${value.trim()}`;
+      const cleanValue = value.trim();
+      output[column.key] = cleanValue && cleanValue.toLowerCase() !== 'undefined' ? `${icon} ${cleanValue}` : icon;
     }
   }
 
